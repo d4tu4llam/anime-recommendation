@@ -149,7 +149,9 @@ Terdapat beberapa missing value yaitu
  - genre : 62 
  - type : 25 
  - rating : 230
-
+#### Memeriksa unique value dari genre
+'Action', 'Adventure', 'Cars', 'Comedy', 'Dementia', 'Demons', 'Drama', 'Ecchi', 'Fantasy', 'Game', 'Harem', 'Hentai', 'Historical', 'Horror', 'Josei', 'Kids', 'Magic', 'Martial Arts', 'Mecha', 'Military', 'Music', 'Mystery', 'Parody', 'Police', 'Psychological', 'Romance', 'Samurai', 'School', 'Sci-Fi', 'Seinen', 'Shoujo', 'Shoujo Ai', 'Shounen', 'Shounen Ai', 'Slice of Life', 'Space', 'Sports', 'Super Power', 'Supernatural', 'Thriller', 'Vampire', 'Yaoi', 'Yuri'
+Terdapat 43 unique value genre
 
 ## Exploratory Data Analysis (EDA)
 ### Distribusi rating anime 
@@ -219,6 +221,7 @@ Karena berbeda antara content-based filtering dengan collaborative filtering, ma
 - Encode fitur user_id dan anime_id ke dalam indeks integer.
 - Memetakan user_id dan anime_id ke dataframe 
 - Train-test-split data
+- Sampling dataset karena terlalu besar
 
 ### 1. Content-Based Filtering
 Untuk content-based filtering, kita akan fokus pada genre yang diproses dengan memisahkan genre-genre berdasarkan koma, kemudian untuk setiap genre menghilangkan spasi di awal/akhir dan mengganti spasi di tengah dengan garis bawah, lalu menggabungkan kembali semua genre tersebut menjadi satu string dengan spasi tunggal sebagai pemisah. Contoh "Shounen Ai, Adventure" menjadi "Shounen_Ai Adventure" untuk menjadi dasar pembuatan sistem rekomendasi tersebut. 
@@ -268,6 +271,10 @@ Namun, kekurangannya adalah semua faktor dianggap sama penting,sensitif pada per
 
 
 ### 2. Collaborative Filtering
+Sampling data untuk mengurangi banyaknya data yang awalnya 7813737 baris menjadi 44111 baris
+
+![sampling](https://github.com/user-attachments/assets/e16c20b1-50db-4d84-b598-28e80755cdb8)
+
 
 Collaborative Filtering menggunakan deep learning, tepatnya embedding layer untuk membuat model deep learning. Embedding layer merupakan tipe layer pada deep learning yang digunakan untuk mentransformasikan data kategorikal menjadi vektor dengan nilai kontinu. 
 Pada python, kita menggunakan **tensorflow.keras.layers Embedding** untuk membentuk embedding layer. Embedding Layer memiliki kelebihan seperti  dapat digunakan di berbagai macam algoritma deep learning,mengurangi kompleksitas model, dan menangkap hubungan semantic pada data.
