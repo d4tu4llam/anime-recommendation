@@ -186,7 +186,7 @@ print(sorted(unique_genres))
 # Tampilkan jumlah genre unik
 print(f"Total unique genres: {len(unique_genres)}")
 
-"""Terdapat
+"""Terdapat 43 unique value dari genre
 
 #### Statistik Deskripsi
 
@@ -421,35 +421,6 @@ pd.DataFrame(
     index = df_content.name
 )
 
-# Assuming you have your tfidf_matrix, tfidf, and df_content defined
-# For demonstration purposes, let's create a dummy DataFrame:
-data = {'col1': [1, 2, 3], 'col2': [4, 5, 6]}
-df_tfidf_table = pd.DataFrame(data, index=['rowA', 'rowB', 'rowC'])
-
-# Create a figure and an axes object
-fig, ax = plt.subplots(figsize=(10, 5)) # Adjust figsize as needed
-
-# Hide the axes (optional, but makes it look cleaner as just a table)
-ax.axis('off')
-ax.axis('tight')
-
-# Create the table
-table = ax.table(cellText=df_tfidf_table.values,
-                 colLabels=df_tfidf_table.columns,
-                 rowLabels=df_tfidf_table.index,
-                 cellLoc='center',
-                 loc='center')
-
-# Adjust layout to prevent labels from overlapping
-fig.tight_layout()
-
-# Save the figure as an image
-plt.savefig('tfidf_dataframe_table.png', dpi=300, bbox_inches='tight')
-print("DataFrame saved as tfidf_dataframe_table.png")
-
-# Close the plot to free up memory
-plt.close(fig)
-
 """### Cosine Similarity
 
 Pada proyek ini content based filtering akan digunakan cosine similarity untuk mencari kemiripan anime
@@ -498,7 +469,7 @@ recommendations_content('Doraemon')
 
 ### Data preparation
 
-Dikarenakan data yang sangat besar kita akan mengambil 500 user unik saja
+Dikarenakan data yang sangat besar kita akan mengambil 500 user unik saja dengan sampling
 """
 
 sampled_users = rating['user_id'].drop_duplicates().sample(n=500, random_state=42)
@@ -506,17 +477,17 @@ df_collab = rating[rating['user_id'].isin(sampled_users)]
 
 df_collab.shape
 
-# Mengubah userID menjadi list tanpa nilai yang sama
+# Mengubah user_id menjadi list tanpa nilai yang sama
 user_ids = df_collab['user_id'].unique().tolist()
 print('list user_id: ', user_ids)
 
-# Melakukan encoding userID
+# Melakukan encoding user_id
 user_to_user_encoded = {x: i for i, x in enumerate(user_ids)}
-print('encoded userID : ', user_to_user_encoded)
+print('encoded user_id : ', user_to_user_encoded)
 
-# Melakukan proses encoding angka ke ke userID
+# Melakukan proses encoding angka ke ke user_id
 user_encoded_to_user = {i: x for i, x in enumerate(user_ids)}
-print('encoded angka ke userID: ', user_encoded_to_user)
+print('encoded angka ke user_id: ', user_encoded_to_user)
 
 # Mengubah anime_id menjadi list tanpa nilai yang sama
 anime_ids = df_collab['anime_id'].unique().tolist()
@@ -527,10 +498,10 @@ anime_to_anime_encoded = {x: i for i, x in enumerate(anime_ids)}
 # Melakukan proses encoding angka ke anime_id
 anime_encoded_to_anime = {i: x for i, x in enumerate(anime_ids)}
 
-# Mapping userID ke dataframe user
+# Mapping user_id ke dataframe user
 df_collab['user'] = df_collab['user_id'].map(user_to_user_encoded)
 
-# Mapping placeID ke dataframe anime
+# Mapping place_id ke dataframe anime
 df_collab['anime'] = df_collab['anime_id'].map(anime_to_anime_encoded)
 
 # Mendapatkan jumlah user
