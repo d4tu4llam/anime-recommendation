@@ -39,6 +39,9 @@ Berdasarkan problem statements, berikut tujuan dibuatnya proyek ini.
 4. Evaluasi Performa Model setelah model dibangun, evaluasi performa akan dilakukan menggunakan metrik seperti Precision dan
    Root Mean Squared Error. Ini akan memberikan wawasan tentang efektivitas model dalam merekomendasikan anime yang relevan
    kepada pengguna.
+   
+### Metrik
+Metrik evaluasi yang digunakan adalah precision untuk content based filtering dan RMSE untuk collaborative filtering
 
 ## Data Understanding
 Dataset yang digunakan untuk membuat sistem rekomendasi anime pada responden diambil dari platform kaggle yang dipublikasikan oleh Cooperunion [berikut](https://www.kaggle.com/datasets/CooperUnion/anime-recommendations-database).
@@ -319,16 +322,10 @@ Dari gambar tersebut, terlihat bahwa nilai RMSE pada data training selalu menuru
 namun karena mendekati 0, maka model yang digunakan telah baik dan akurat untuk membuat sistem rekomendasi.
 
 
-
-# Mengapa masalah ini harus diselesaikan
- 1. Pendorong Pertumbuhan Pendapatan Bisnis
- 2. Penciptaan Pengalaman Pengguna yang Efisien dan Memuaskan
-
 ## Kesimpulan
 1. Perilaku konsumsi penggemar anime tampaknya berada pada genre comedy (32.7%) dan tipe anime yang ditonton adalah TV (30.9%)
 2. Anime yang paling banyak member komunitasnya adalah 'Death Note' dengan jumlah member 1.013.917, produser anime bisa membuat anime baru dengan genre atau tema yang sama untuk memanfaatkan jumlah member yang besar demi keuntungan
 3. Sistem rekomendasi dapat diimplementasikan dengan menggunakan 2 approach, yaitu content-based filtering approach menggunakan cosine similarity dan collaborativer filtering approach menggunakan embedding layer untuk memberikan sistem rekomendasi terbaik.
-
 
 ## Referensi
 
@@ -340,4 +337,3 @@ namun karena mendekati 0, maka model yang digunakan telah baik dan akurat untuk 
 
 [4] Dicoding. Diakses pada 1 Juni 2025 dari https://www.dicoding.com/academies/319/corridor
 
-[5] Kaggle. Diakses pada 01 Desember 2025 dari https://www.kaggle.com/code/slaymaneslime/marketing-approach-beauty-comestics-analysis
