@@ -214,13 +214,14 @@ Karena berbeda antara content-based filtering dengan collaborative filtering, ma
   
 ![image](https://github.com/user-attachments/assets/3d941fdb-5255-49de-b8ba-9f3c09f40644)
 
+- Mengformat genre (dijelaskan di content based)
 - TF-IDF Vectorizer 
-- Encoding Data User Rating
-- Train-test-split Data User Rating
+- Encode fitur user_id dan anime_id ke dalam indeks integer.
+- Memetakan user_id dan anime_id ke dataframe 
+- Train-test-split data
 
 ### 1. Content-Based Filtering
-Untuk content-based filtering, kita akan fokus pada genre yang diproses dengan memisahkan genre-genre berdasarkan koma, kemudian untuk setiap genre menghilangkan spasi di awal/akhir dan mengganti spasi di tengah dengan garis bawah, lalu menggabungkan kembali semua genre tersebut menjadi satu string 
-dengan spasi tunggal sebagai pemisah. Contoh "Shounen Ai, Adventure" menjadi "Shounen_Ai Adventure" untuk menjadi dasar pembuatan sistem rekomendasi tersebut. 
+Untuk content-based filtering, kita akan fokus pada genre yang diproses dengan memisahkan genre-genre berdasarkan koma, kemudian untuk setiap genre menghilangkan spasi di awal/akhir dan mengganti spasi di tengah dengan garis bawah, lalu menggabungkan kembali semua genre tersebut menjadi satu string dengan spasi tunggal sebagai pemisah. Contoh "Shounen Ai, Adventure" menjadi "Shounen_Ai Adventure" untuk menjadi dasar pembuatan sistem rekomendasi tersebut. 
 
 Selanjutnya, digunakan TfidfVectorizer() pada kolom genre untuk menghasilkan output berupa angka antara 0 - 1. Lalu, dibentuk dataframe yang berisi kolom genre yang telah dilakukan vektorisasi dengan TfidfVectorizer() sebagai kolom dan seluruh nama anime 
 sebagai barisnya. Hal ini dilakukan karena akan digunakan cosine similarity pada content-based filtering, dimana cosine similarity memerlukan bentuk angka agar dapat dihitung. Contoh dari dataframe dapat dilihat pada tabel berikut.
@@ -231,7 +232,7 @@ sebagai barisnya. Hal ini dilakukan karena akan digunakan cosine similarity pada
 - Data perlu diubah kedalam representasi numerik karena sistem rekomendasi berbasis konten membutuhkan representasi numerik dari teks atau fitur kategori agar dapat mengukur kemiripan antar-item. Misalnya, dalam rekomendasi anime, kategori seperti "Adventure," "Action," atau "Supernatural" diubah menjadi nilai numerik untuk dihitung kemiripannya.
 
 ### 2. Collaborative Filtering
-Untuk collaborative filtering, kita akan fokus pada user_id, dan rating .
+Untuk collaborative filtering, kita akan fokus pada user_id, dan anime_id .
 
 
 Karena **user_id** dan **anime_id** memiliki tipe data string dan unik, maka dilakukan encoding terhadap kedua kolom tersebut, kemudian dibentuk dataframe yang berisi kolom **user_id** yang sudah diencoding, kolom **anime_id** yang sudah diencoding, dan **Rating**. Contoh dari dataframe dapat dilihat pada tabel berikut.
