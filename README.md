@@ -269,7 +269,8 @@ $$Cos (\theta) = \frac{\sum_1^n a_ib_i}{\sqrt{\sum_1^n a_i^2}\sqrt{\sum_1^n b_i^
 Kita akan memakai cosine_similarity untuk menghitung kemiripan antar vektor dalam matriks. Metode ini unggul karena menghasilkan output ternormalisasi (-1 hingga 1) yang mudah ditafsirkan, mudah digunakan, dan efisien untuk data sparse berdimensi tinggi seperti TF-IDF. 
 Namun, kekurangannya adalah semua faktor dianggap sama penting,sensitif pada perubahan 'sudut vektor', dan kurang cocok untuk data negatif. Setelah sistem rekomendasi terbentuk, sistem ini akan diuji untuk menampilkan 10 rekomendasi teratas berdasarkan genre. Berikut hasilnya
 
-![image](https://github.com/user-attachments/assets/ba8033dc-792c-47a2-9cf2-7c7204f52e1d)
+![image](https://github.com/user-attachments/assets/903e88bd-46e8-4423-962f-a3bffcd82eb1)
+
 
 
 
@@ -292,17 +293,16 @@ Contoh jika kita ingin rekomendasi film untuk Doraemon
 
 ### 1. Content-Based Filtering
 
-Pada content-based filtering, model ini hanya menggunakan metrik Precision untuk mengetahui seberapa baik perforam model tersebut. Presisi adalah metrik yang biasa digunakan untuk mengevaluasi kinerja model pengelompokan. 
+Pada content-based filtering, model ini hanya menggunakan metrik Precision untuk mengetahui seberapa baik perforam model tersebut. Presisi adalah metrik yang biasa digunakan untuk mengevaluasi kinerja sistem rekomendasi, seperti pada content-based filtering, dengan mengukur proporsi rekomendasi yang relevan.
 Metrik ini menghitung rasio antara nilai ground truth (nilai sebenarnya) dengan nilai prediksi yang positf. Perhitungan rasio ini dijabarkan melalui rumus di bawah ini:
 
 $$ Precision = \frac{TP}{TP + FP} $$
 
 Dimana:
-
 - TP (*True Positive*), jumlah kejadian positif yang diprediksi dengan benar.
 - FP (*False Positive*), jumlah kejadian positif yang diprediksi dengan salah.
 
-Berdasarkan hasil yang terdapat pada tahap Model and Result dapat dilihat bahwasanya besar presisi jika dihitung adalah 10/10 untuk rekomendasi Top-10. Ini menunjukan sistem mampu memberikan rekomendasi sesuai dengan genre.
+Berdasarkan hasil yang terdapat pada tahap Model and Result dapat dilihat bahwa besar presisi jika dihitung adalah 10/10 (10 dari 10 rekomendasi yang di hasilkan relevan) untuk rekomendasi Top-10. Ini menunjukan sistem mampu memberikan rekomendasi sesuai dengan genre.
 ![evaluasi](https://github.com/user-attachments/assets/bbc1412a-904c-4f63-841a-c2925d42e1c6)
 
 
