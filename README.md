@@ -218,7 +218,7 @@ Karena berbeda antara content-based filtering dengan collaborative filtering, ma
 
 - Mengformat genre (dijelaskan di content based)
 - TF-IDF Vectorizer 
-- Sampling dataset karena terlalu besar
+- Sampling dataset karena terlalu besar (collaborative filtering)
 - Encode fitur user_id dan anime_id ke dalam indeks integer.
 - Memetakan user_id dan anime_id ke dataframe 
 - Train-test-split data
@@ -254,7 +254,7 @@ Karena **user_id** dan **anime_id** memiliki tipe data string dan unik, maka dil
 
 **Mengapa diperlukan melakukan Train-test-split data?**
 
-- MUntuk mendapatkan gambaran yang lebih tepat tentang seberapa baik model yang kita buat, data dibagi menjadi set pelatihan dan pengujian, di mana set pengujian berisi data baru untuk menilai kinerja model secara akurat
+- Untuk mendapatkan gambaran yang lebih tepat tentang seberapa baik model yang kita buat, data dibagi menjadi set pelatihan dan pengujian, di mana set pengujian berisi data baru untuk menilai kinerja model secara akurat
 
 
 ## Modelling and Result
