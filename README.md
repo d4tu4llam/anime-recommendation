@@ -303,6 +303,8 @@ Dimana:
 - FP (*False Positive*), jumlah kejadian positif yang diprediksi dengan salah.
 
 Berdasarkan hasil yang terdapat pada tahap Model and Result dapat dilihat bahwa besar presisi jika dihitung adalah 10/10 (10 dari 10 rekomendasi yang di hasilkan relevan) untuk rekomendasi Top-10. Ini menunjukan sistem mampu memberikan rekomendasi sesuai dengan genre.
+
+
 ![evaluasi](https://github.com/user-attachments/assets/bbc1412a-904c-4f63-841a-c2925d42e1c6)
 
 
