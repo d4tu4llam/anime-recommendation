@@ -218,10 +218,11 @@ Karena berbeda antara content-based filtering dengan collaborative filtering, ma
 
 - Mengformat genre (dijelaskan di content based)
 - TF-IDF Vectorizer 
+- Sampling dataset karena terlalu besar
 - Encode fitur user_id dan anime_id ke dalam indeks integer.
 - Memetakan user_id dan anime_id ke dataframe 
 - Train-test-split data
-- Sampling dataset karena terlalu besar
+
 
 ### 1. Content-Based Filtering
 Untuk content-based filtering, kita akan fokus pada genre yang diproses dengan memisahkan genre-genre berdasarkan koma, kemudian untuk setiap genre menghilangkan spasi di awal/akhir dan mengganti spasi di tengah dengan garis bawah, lalu menggabungkan kembali semua genre tersebut menjadi satu string dengan spasi tunggal sebagai pemisah. Contoh "Shounen Ai, Adventure" menjadi "Shounen_Ai Adventure" untuk menjadi dasar pembuatan sistem rekomendasi tersebut. 
@@ -235,9 +236,12 @@ sebagai barisnya. Hal ini dilakukan karena akan digunakan cosine similarity pada
 - Data perlu diubah kedalam representasi numerik karena sistem rekomendasi berbasis konten membutuhkan representasi numerik dari teks atau fitur kategori agar dapat mengukur kemiripan antar-item. Misalnya, dalam rekomendasi anime, kategori seperti "Adventure," "Action," atau "Supernatural" diubah menjadi nilai numerik untuk dihitung kemiripannya.
 
 ### 2. Collaborative Filtering
+Sampling data untuk mengurangi banyaknya data yang awalnya 7813737 baris menjadi 44111 baris
+
+![sampling](https://github.com/user-attachments/assets/e16c20b1-50db-4d84-b598-28e80755cdb8)
+
+
 Untuk collaborative filtering, kita akan fokus pada user_id, dan anime_id .
-
-
 Karena **user_id** dan **anime_id** memiliki tipe data string dan unik, maka dilakukan encoding terhadap kedua kolom tersebut, kemudian dibentuk dataframe yang berisi kolom **user_id** yang sudah diencoding, kolom **anime_id** yang sudah diencoding, dan **Rating**. Contoh dari dataframe dapat dilihat pada tabel berikut.
 
 ![image](https://github.com/user-attachments/assets/0f1eef58-a005-4335-ba41-a280436dd7e7)
@@ -265,24 +269,23 @@ $$Cos (\theta) = \frac{\sum_1^n a_ib_i}{\sqrt{\sum_1^n a_i^2}\sqrt{\sum_1^n b_i^
 Kita akan memakai cosine_similarity untuk menghitung kemiripan antar vektor dalam matriks. Metode ini unggul karena menghasilkan output ternormalisasi (-1 hingga 1) yang mudah ditafsirkan, mudah digunakan, dan efisien untuk data sparse berdimensi tinggi seperti TF-IDF. 
 Namun, kekurangannya adalah semua faktor dianggap sama penting,sensitif pada perubahan 'sudut vektor', dan kurang cocok untuk data negatif. Setelah sistem rekomendasi terbentuk, sistem ini akan diuji untuk menampilkan 10 rekomendasi teratas berdasarkan genre. Berikut hasilnya
 
-**recommendations_content('Naruto')**
+![image](https://github.com/user-attachments/assets/ba8033dc-792c-47a2-9cf2-7c7204f52e1d)
 
-![content_based](https://github.com/user-attachments/assets/55a805be-b90c-4e69-8962-c063b623406f)
+
+
 
 
 ### 2. Collaborative Filtering
-Sampling data untuk mengurangi banyaknya data yang awalnya 7813737 baris menjadi 44111 baris
-
-![sampling](https://github.com/user-attachments/assets/e16c20b1-50db-4d84-b598-28e80755cdb8)
-
 
 Collaborative Filtering menggunakan deep learning, tepatnya embedding layer untuk membuat model deep learning. Embedding layer merupakan tipe layer pada deep learning yang digunakan untuk mentransformasikan data kategorikal menjadi vektor dengan nilai kontinu. 
 Pada python, kita menggunakan **tensorflow.keras.layers Embedding** untuk membentuk embedding layer. Embedding Layer memiliki kelebihan seperti  dapat digunakan di berbagai macam algoritma deep learning,mengurangi kompleksitas model, dan menangkap hubungan semantic pada data.
 Namun, embedding layer juga memiliki beberapa kelemahan, seperti membutuhkan data yang banyak, sensitif terhadap hyperparameter, dan cold start problem. Setelah model dibentuk dan dilatih, diperoleh hasil **root_mean_squared_error: 0.1254** untuk data training dan 
 **val_root_mean_squared_error:  0.1398** untuk data testing. Nilai tersebut sudah bagus untuk digunakan dalam sistem rekomendasi, sehingga dapat dibentuk sistem rekomendasi berdasarkan model tersebut. Selanjutnya, akan diuji sistem rekomendasi ini untuk menampilkan 
 top 10 rekomendasi anime berdasarkan user lain. Diperoleh hasil berikut.
+Contoh jika kita ingin rekomendasi film untuk Doraemon
 
-![collaborative_filtering](https://github.com/user-attachments/assets/7eb34a3d-cb6f-4575-91c3-2425562f8f0f)
+![image](https://github.com/user-attachments/assets/9d320b1d-eca3-4b08-aaf4-c3c3a6e4a725)
+
 
 
 ## Evaluation
@@ -300,6 +303,7 @@ Dimana:
 - FP (*False Positive*), jumlah kejadian positif yang diprediksi dengan salah.
 
 Berdasarkan hasil yang terdapat pada tahap Model and Result dapat dilihat bahwasanya besar presisi jika dihitung adalah 10/10 untuk rekomendasi Top-10. Ini menunjukan sistem mampu memberikan rekomendasi sesuai dengan genre.
+![evaluasi](https://github.com/user-attachments/assets/bbc1412a-904c-4f63-841a-c2925d42e1c6)
 
 
 ### 2. Collaborative Filtering
@@ -321,7 +325,7 @@ Jika nilai prediksi sangat mendekati nilai sesungguhnya, maka nilai dari $(y_i -
 
 #### Penerapan Evaluasi Model dengan RMSE
 
-Pada collaborative filtering, setelah melatih model sebanyak 10 epoch, diperoleh hasil **RMSE = 0.1254 ** untuk data training dan **RMSE = 0.1398** untuk data testing. Jika dilihat menggunakan grafik.
+Pada collaborative filtering, setelah melatih model sebanyak 10 epoch, diperoleh hasil **RMSE = 0.1248 ** untuk data training dan **RMSE = 0.1394** untuk data testing. Jika dilihat menggunakan grafik.
 
 ![grafik rmse](https://github.com/user-attachments/assets/f36634ac-ec4d-40aa-9fa4-1486bfe4710e)
 
